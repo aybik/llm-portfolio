@@ -1,5 +1,5 @@
 import os
-from typing import List, Dict, Any, Optional, Callable
+from typing import Dict, Any, Optional
 
 
 class Config:
@@ -28,36 +28,9 @@ class Config:
         return cls(config)
 
 
-# ============================================================================
-# EXAMPLE USAGE
-# ============================================================================
-
 if __name__ == "__main__":
-    # Example: Using embeddings
-    print("Testing embeddings...")
-    embedder = get_embedding_provider("local")
-    texts = ["Hello world", "Machine learning is fun"]
-    embeddings = embedder.embed_documents(texts)
-    print(f"Generated {len(embeddings)} embeddings")
-
-    # Example: Using prompts
-    print("\nTesting prompt templates...")
-    prompt = PromptTemplate.format(
-        PromptTemplate.QA_TEMPLATE,
-        context="The sky is blue because of Rayleigh scattering.",
-        question="Why is the sky blue?"
-    )
-    print(prompt)
-
-    # Example: Calculating metrics
-    print("\nTesting metrics...")
-    retrieved = ["doc1", "doc2", "doc3"]
-    relevant = ["doc1", "doc3", "doc4"]
-    precision = RAGMetrics.retrieval_precision(retrieved, relevant)
-    recall = RAGMetrics.retrieval_recall(retrieved, relevant)
-    print(f"Precision: {precision:.2f}, Recall: {recall:.2f}")
-
-    # Example: Cost estimation
-    print("\nTesting cost estimation...")
-    cost = CostEstimator.estimate_cost("gpt-4", input_tokens=1000, output_tokens=500)
-    print(f"Estimated cost: ${cost:.4f}")
+    # Test configuration
+    config = Config.from_env()
+    print(f"Model: {config.get('model')}")
+    print(f"Temperature: {config.get('temperature')}")
+    print(f"Max tokens: {config.get('max_tokens')}")
