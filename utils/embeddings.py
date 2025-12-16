@@ -1,5 +1,6 @@
 import os
 from typing import List
+from sentence_transformers import SentenceTransformer  # ADDED THIS
 
 
 class EmbeddingProvider:

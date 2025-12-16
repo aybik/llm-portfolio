@@ -1,9 +1,7 @@
-import os
 import time
-from typing import List, Dict, Any, Optional, Callable
+from typing import Callable
 from functools import wraps
-import numpy as np
-from sentence_transformers import SentenceTransformer
+
 
 def timer(func: Callable) -> Callable:
     """Decorator to measure function execution time."""
